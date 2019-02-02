@@ -14,6 +14,7 @@
 		AA02B2E72203B2D200FE5DA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA02B2E52203B2D200FE5DA3 /* LaunchScreen.storyboard */; };
 		AA02B2F22203B2D300FE5DA3 /* CustomerRecordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA02B2F12203B2D300FE5DA3 /* CustomerRecordsTests.swift */; };
 		AA02B3012203B44600FE5DA3 /* customers.txt in Resources */ = {isa = PBXBuildFile; fileRef = AA02B3002203B44600FE5DA3 /* customers.txt */; };
+		AA060143220534B500540240 /* CustomerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA060142220534B500540240 /* CustomerViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		AA02B2F12203B2D300FE5DA3 /* CustomerRecordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRecordsTests.swift; sourceTree = "<group>"; };
 		AA02B2F32203B2D300FE5DA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA02B3002203B44600FE5DA3 /* customers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customers.txt; sourceTree = "<group>"; };
+		AA060142220534B500540240 /* CustomerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +106,6 @@
 		AA02B2FC2203B2E800FE5DA3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				AA02B2DE2203B2C900FE5DA3 /* CustomersViewController.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -112,6 +113,8 @@
 		AA02B2FD2203B2EC00FE5DA3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AA0601412205348400540240 /* ViewCell */,
+				AA02B2DE2203B2C900FE5DA3 /* CustomersViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -129,6 +132,14 @@
 				AA02B3002203B44600FE5DA3 /* customers.txt */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		AA0601412205348400540240 /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				AA060142220534B500540240 /* CustomerViewCell.swift */,
+			);
+			path = ViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA060143220534B500540240 /* CustomerViewCell.swift in Sources */,
 				AA02B2DF2203B2C900FE5DA3 /* CustomersViewController.swift in Sources */,
 				AA02B2DD2203B2C900FE5DA3 /* AppDelegate.swift in Sources */,
 			);
