@@ -10,7 +10,7 @@ import Foundation
 
 
 struct Customer: Codable {
-    let userId: int
+    let userId: Int
     let name: String
     let longitudeString: String
     var longitude: Double {

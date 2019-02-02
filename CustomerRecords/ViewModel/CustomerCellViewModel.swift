@@ -10,7 +10,7 @@ import Foundation
 
 
 class CustomerCellViewModel {
-    let userId: String
+    let userId: Int
     let name: String
     let longitude: Double
     let latitude: Double

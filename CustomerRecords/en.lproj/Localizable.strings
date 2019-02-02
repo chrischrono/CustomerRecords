@@ -5,3 +5,10 @@
   Created by Christian  Huang on 02/02/19.
   Copyright © 2019 Christian Huang. All rights reserved.
 */
+
+
+"load_file_error" = "Failed to load data file";
+"load_file_not_string" = "Data File is not a String";
+"parse_customer_string_error" = "Failed to parse Customer's JSON string";
+
+"load_data_loading" = "Loading...";

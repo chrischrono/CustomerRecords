@@ -23,7 +23,7 @@ class FileDataLoader: DataLoader {
     }
     
     private func loadCustomerFromFile(_ filename: String, completion: (([Customer]?, String?) -> ())) {
-        guard let data = loadDataFromBundle(withName: "customers", extension: "txt")  else {
+        guard let data = loadDataFromBundle(withName: filename, extension: "txt")  else {
             completion(nil, "load_file_error".localized())
             return
         }
@@ -39,8 +39,8 @@ class FileDataLoader: DataLoader {
     private func parseCustomersString(_ customersString: String, completion: (([Customer]?, String?) -> ())) {
         let customersList = customersString.components(separatedBy: "\n")
         
-        let customers = customersList.compactMap({(customerString)->Customer? in
-            guard let data = customersString.data(using: .utf8) else {
+        let customers = customersList.compactMap({(customerString) -> Customer? in
+            guard let data = customerString.data(using: .utf8) else {
                 return nil
             }
             return try? JSONDecoder().decode(Customer.self, from: data)

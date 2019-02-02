@@ -11,7 +11,8 @@ import Foundation
 
 class CustomersViewModel {
     private var customers = [Customer]()
-    var customerCellViewModels: [CustomerCellViewModel] = [] {
+    private var customerCellViewModels: [CustomerCellViewModel] = []
+    private var filteredCustomerViewModels: [CustomerCellViewModel] = [] {
         didSet {
             reloadCustomersTableViewClosure?()
         }
@@ -20,27 +21,52 @@ class CustomersViewModel {
     var reloadCustomersTableViewClosure: (()->())?
     
     var status: String?
-    
+    var isLoading = false
     var dataLoader = FileDataLoader()
     
-    var officeLatitude = 53.339428
-    var officeLongitude = -6.257664
-    var maxDistance = 100
+    private var officeLatitude = 53.339428
+    private var officeLongitude = -6.257664
+    var maxDistance: Double = 100 {
+        didSet {
+            filterCustomers()
+        }
+    }
 }
 
 //MARK:- public func
 extension CustomersViewModel {
     func loadData() {
+        guard isLoading == false && customers.count == 0 else {
+            return
+        }
+        
+        isLoading = true
         status = "load_data_loading".localized()
         reloadCustomersTableViewClosure?()
         dataLoader.loadCustomer { [weak self] (customers, error) in
             guard let self = self else {
                 return
             }
+            self.isLoading = false
             self.status = error
             
             self.processCustomers(customers)
         }
+    }
+    
+    func getCustomersCount() -> Int {
+        return filteredCustomerViewModels.count
+    }
+    
+    func getCustomerCellViewModel(forIndex index: Int) -> CustomerCellViewModel{
+        return filteredCustomerViewModels[index]
+    }
+    
+    func setOfficeLocation(latitude: Double, longitude: Double) {
+        officeLatitude = latitude
+        officeLongitude = longitude
+        calculateCustomersDistance()
+        filterCustomers()
     }
 }
 
@@ -53,9 +79,23 @@ extension CustomersViewModel {
             self.customers = [Customer]()
         }
         
-        customerCellViewModels = self.customers.map({ (customer)->CustomerCellViewModel in
-            return CustomerCellViewModel(withCustomer: customer)
+        customerCellViewModels = self.customers.map({ (customer) -> CustomerCellViewModel in
+            let customerCellViewModel = CustomerCellViewModel(withCustomer: customer)
+            return customerCellViewModel
         })
+        
+        calculateCustomersDistance()
+        filterCustomers()
+    }
+    
+    private func calculateCustomersDistance() {
+        for customerCellViewModel in customerCellViewModels {
+            customerCellViewModel.setDistanceFrom(targetLatitude: officeLatitude, targetLongitude: officeLongitude)
+        }
+    }
+    
+    private func filterCustomers() {
+        filteredCustomerViewModels = customerCellViewModels.filter({ return $0.distance <= maxDistance })
     }
 }
 

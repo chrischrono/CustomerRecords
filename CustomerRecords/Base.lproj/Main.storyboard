@@ -15,11 +15,38 @@
             <objects>
                 <viewController title="Customers" id="BYZ-38-t0r" customClass="CustomersViewController" customModule="CustomerRecords" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iEa-x3-G52">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVz-2e-ZFA" userLabel="headerView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yoO-N8-47W">
+                                        <rect key="frame" x="142.5" y="11.5" width="90" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6o-YN-zyn" userLabel="separatorView">
+                                        <rect key="frame" x="0.0" y="43" width="375" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="gSl-iu-nBs"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="DIe-iq-PzS"/>
+                                    <constraint firstItem="yoO-N8-47W" firstAttribute="centerY" secondItem="KVz-2e-ZFA" secondAttribute="centerY" id="FuO-Yt-igs"/>
+                                    <constraint firstItem="L6o-YN-zyn" firstAttribute="width" secondItem="KVz-2e-ZFA" secondAttribute="width" id="dQr-yq-YYg"/>
+                                    <constraint firstItem="yoO-N8-47W" firstAttribute="centerX" secondItem="KVz-2e-ZFA" secondAttribute="centerX" id="fbz-8q-t30"/>
+                                    <constraint firstItem="L6o-YN-zyn" firstAttribute="centerX" secondItem="KVz-2e-ZFA" secondAttribute="centerX" id="rjX-G2-GYL"/>
+                                    <constraint firstItem="L6o-YN-zyn" firstAttribute="bottom" secondItem="KVz-2e-ZFA" secondAttribute="bottom" id="xeA-QA-4Vu"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iEa-x3-G52">
+                                <rect key="frame" x="0.0" y="64" width="375" height="613"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StatusCellIdentifier" textLabel="L0f-vr-RBI" style="IBUITableViewCellStyleDefault" id="pHK-Ep-iSY">
@@ -84,18 +111,24 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="eH5-jX-1qf"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="iEa-x3-G52" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="10" id="2sX-FG-UF9"/>
                             <constraint firstItem="iEa-x3-G52" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Avy-yV-NYw"/>
-                            <constraint firstItem="iEa-x3-G52" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Bo7-z7-0xD"/>
+                            <constraint firstItem="KVz-2e-ZFA" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="DLo-qn-dnb"/>
                             <constraint firstItem="iEa-x3-G52" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="N6h-ZJ-jPD"/>
-                            <constraint firstItem="iEa-x3-G52" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="qgq-MC-pAu"/>
+                            <constraint firstItem="KVz-2e-ZFA" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="eao-2A-cgf"/>
+                            <constraint firstItem="KVz-2e-ZFA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="q9R-QF-Xk1"/>
+                            <constraint firstItem="iEa-x3-G52" firstAttribute="top" secondItem="KVz-2e-ZFA" secondAttribute="bottom" id="qoV-bN-kP7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="customersTableView" destination="iEa-x3-G52" id="DxR-RB-olb"/>
                     </connections>

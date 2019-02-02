@@ -24,4 +24,8 @@ class CustomerViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func configureCell(with viewModel: CustomerCellViewModel){
+        idLabel.text = "\(viewModel.userId)"
+        nameLabel.text = String(format: "%@ (%.2f)", viewModel.name, viewModel.distance)
+    }
 }
