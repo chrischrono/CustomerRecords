@@ -25,5 +25,7 @@ class CustomerCellViewModel {
     
     func setDistanceFrom(targetLatitude: Double, targetLongitude: Double) {
         distance = DistanceCalculator.calculateDistance(latitude1: latitude, longitude1: longitude, latitude2: targetLatitude, longitude2: targetLongitude)
+        
+        //print("\(userId): \(distance)")
     }
 }

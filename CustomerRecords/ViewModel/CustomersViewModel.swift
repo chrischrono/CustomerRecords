@@ -11,31 +11,32 @@ import Foundation
 
 class CustomersViewModel {
     private var customers = [Customer]()
-    private var customerCellViewModels: [CustomerCellViewModel] = []
-    private var filteredCustomerViewModels: [CustomerCellViewModel] = [] {
+    var customerCellViewModels: [CustomerCellViewModel] = []
+    var filteredCustomerViewModels: [CustomerCellViewModel] = [] {
         didSet {
             reloadCustomersTableViewClosure?()
         }
     }
     
-    var reloadCustomersTableViewClosure: (()->())?
-    
     var status: String?
     var isLoading = false
-    var dataLoader = FileDataLoader()
+    var dataLoader: DataLoader = FileDataLoader()
     
     private var officeLatitude = 53.339428
     private var officeLongitude = -6.257664
+    /** hold the maximum distance to filter the users */
     var maxDistance: Double = 100 {
         didSet {
             filterCustomers()
         }
     }
+    
+    var reloadCustomersTableViewClosure: (()->())?
 }
 
 //MARK:- public func
 extension CustomersViewModel {
-    func loadData() {
+    func loadCustomers() {
         guard isLoading == false && customers.count == 0 else {
             return
         }
@@ -43,7 +44,7 @@ extension CustomersViewModel {
         isLoading = true
         status = "load_data_loading".localized()
         reloadCustomersTableViewClosure?()
-        dataLoader.loadCustomer { [weak self] (customers, error) in
+        dataLoader.loadCustomers { [weak self] (customers, error) in
             guard let self = self else {
                 return
             }
@@ -62,6 +63,11 @@ extension CustomersViewModel {
         return filteredCustomerViewModels[index]
     }
     
+    /**
+     Set Office's location and update CustomerList
+     - Parameter latitude
+     - Parameter longitude
+     */
     func setOfficeLocation(latitude: Double, longitude: Double) {
         officeLatitude = latitude
         officeLongitude = longitude

@@ -11,18 +11,18 @@ import Foundation
 
 
 protocol DataLoader {
-    func loadCustomer(completion: @escaping ((_ customers: [Customer]?, _ error: String?)->()))
+    func loadCustomers(completion: @escaping ((_ customers: [Customer]?, _ error: String?)->()))
 }
 
 
 class FileDataLoader: DataLoader {
-    func loadCustomer(completion: @escaping (([Customer]?, String?) -> ())) {
+    func loadCustomers(completion: @escaping (([Customer]?, String?) -> ())) {
         DispatchQueue.global(qos: .utility).async { [weak self] in
-            self?.loadCustomerFromFile("customers", completion: completion)
+            self?.loadCustomersFromFile("customers", completion: completion)
         }
     }
     
-    private func loadCustomerFromFile(_ filename: String, completion: (([Customer]?, String?) -> ())) {
+    private func loadCustomersFromFile(_ filename: String, completion: (([Customer]?, String?) -> ())) {
         guard let data = loadDataFromBundle(withName: filename, extension: "txt")  else {
             completion(nil, "load_file_error".localized())
             return

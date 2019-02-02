@@ -24,7 +24,7 @@ class CustomersViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        customersViewModel.loadData()
+        customersViewModel.loadCustomers()
     }
 
 }
